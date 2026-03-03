@@ -413,6 +413,20 @@ def compute_combined_score(buffett_score: float, entry_score: float,
 # OUTPUT
 # ─────────────────────────────────────────────────────────────────────────────
 
+def _sanitise_for_json(obj):
+    """Replace Infinity, -Infinity, and NaN with None for valid JSON output."""
+    import math
+    if isinstance(obj, float):
+        if math.isinf(obj) or math.isnan(obj):
+            return None
+        return obj
+    elif isinstance(obj, dict):
+        return {k: _sanitise_for_json(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [_sanitise_for_json(v) for v in obj]
+    return obj
+
+
 def export_entry_results(results: list[dict], screener_data: dict | None,
                          filename: str = "data/entry_signals"):
     """Export entry scanner results to JSON and a summary CSV."""
@@ -463,7 +477,7 @@ def export_entry_results(results: list[dict], screener_data: dict | None,
     # JSON
     json_path = f"{filename}.json"
     with open(json_path, "w") as f:
-        json.dump(json_output, f, indent=2, default=str)
+        json.dump(_sanitise_for_json(json_output), f, indent=2, default=str)
     logger.info(f"Entry signals exported to {json_path}")
 
     # CSV summary

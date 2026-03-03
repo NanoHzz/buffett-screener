@@ -987,6 +987,20 @@ def score_stock(data: dict) -> dict:
 # OUTPUT — Excel workbook with multiple sheets
 # ─────────────────────────────────────────────────────────────────────────────
 
+def _sanitise_for_json(obj):
+    """Replace Infinity, -Infinity, and NaN with None for valid JSON output."""
+    import math
+    if isinstance(obj, float):
+        if math.isinf(obj) or math.isnan(obj):
+            return None
+        return obj
+    elif isinstance(obj, dict):
+        return {k: _sanitise_for_json(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [_sanitise_for_json(v) for v in obj]
+    return obj
+
+
 def export_results(results: list[dict], filename: str = "buffett_graham_screener"):
     """Export results to Excel, CSV, and JSON (for the React frontend)."""
     
@@ -1079,7 +1093,7 @@ def export_results(results: list[dict], filename: str = "buffett_graham_screener
     
     json_path = f"{filename}.json"
     with open(json_path, "w") as f:
-        json.dump(json_output, f, indent=2, default=str)
+        json.dump(_sanitise_for_json(json_output), f, indent=2, default=str)
     logger.info(f"JSON exported to {json_path}")
     
     # ── Main results DataFrame ──
