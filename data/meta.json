@@ -1,8 +1,7 @@
 {
-  "last_run": null,
-  "exchange": "ALL",
+  "last_run": "2026-03-03T07:20:10Z",
+  "exchange": "ASX",
   "min_mcap_b": 2.0,
-  "run_id": null,
-  "run_url": null,
-  "note": "Run the screener to populate this file: python scripts/screener.py --output data/screener_results"
+  "run_id": "22612439915",
+  "run_url": "https://github.com/NanoHzz/buffett-screener/actions/runs/22612439915"
 }
