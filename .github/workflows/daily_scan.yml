@@ -52,13 +52,12 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run daily ping system
-        working-directory: scripts
         run: |
           THRESHOLD="${{ github.event.inputs.threshold || '70' }}"
           DRY_RUN="${{ github.event.inputs.dry_run || 'false' }}"
           FORCE="${{ github.event.inputs.force_email || 'false' }}"
           
-          ARGS="--threshold $THRESHOLD --input ../data/screener_results.json --top 75"
+          ARGS="--threshold $THRESHOLD --input data/screener_results.json --top 75"
           
           if [ "$DRY_RUN" = "true" ]; then
             ARGS="$ARGS --dry-run"
@@ -68,7 +67,7 @@ jobs:
             ARGS="$ARGS --force-email"
           fi
           
-          python daily_ping.py $ARGS
+          PYTHONPATH=scripts python scripts/daily_ping.py $ARGS
         env:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PW: ${{ secrets.GMAIL_APP_PW }}
