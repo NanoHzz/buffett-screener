@@ -1,0 +1,8 @@
+{
+  "last_run": null,
+  "exchange": "ALL",
+  "min_mcap_b": 2.0,
+  "run_id": null,
+  "run_url": null,
+  "note": "Run the screener to populate this file: python scripts/screener.py --output data/screener_results"
+}

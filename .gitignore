@@ -1,0 +1,29 @@
+# Dependencies
+frontend/node_modules/
+frontend/dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Ticker cache (rebuilt automatically, but we DO commit it for GH Actions speed)
+# ticker_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Excel/CSV outputs (large files — only JSON is committed)
+data/*.xlsx
+data/*.csv
+
+# Keep the JSON results and history
+!data/*.json
+!data/history/

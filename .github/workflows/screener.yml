@@ -1,0 +1,152 @@
+name: Monthly Buffett/Graham Screener
+
+on:
+  # Run at 00:00 UTC on the 1st of every month
+  schedule:
+    - cron: '0 0 1 * *'
+  
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+    inputs:
+      exchange:
+        description: 'Exchange to screen'
+        required: false
+        default: 'ALL'
+        type: choice
+        options:
+          - ALL
+          - US
+          - ASX
+      min_mcap:
+        description: 'Minimum market cap ($B)'
+        required: false
+        default: '2.0'
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300  # 5hr max — full run can take 2-4hrs
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore ticker cache
+        uses: actions/cache@v4
+        with:
+          path: ticker_cache/
+          key: ticker-cache-${{ github.run_id }}
+          restore-keys: |
+            ticker-cache-
+
+      - name: Run screener
+        run: |
+          EXCHANGE="${{ github.event.inputs.exchange || 'ALL' }}"
+          MIN_MCAP="${{ github.event.inputs.min_mcap || '2.0' }}"
+          
+          python scripts/screener.py \
+            --exchange "$EXCHANGE" \
+            --min-mcap "$MIN_MCAP" \
+            --top 200 \
+            --output data/screener_results
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Run entry scanner on top results
+        run: |
+          python scripts/entry_scanner.py \
+            --input data/screener_results.json \
+            --top 75 \
+            --output data/entry_signals
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Generate run metadata
+        run: |
+          cat > data/meta.json << EOF
+          {
+            "last_run": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "exchange": "${{ github.event.inputs.exchange || 'ALL' }}",
+            "min_mcap_b": ${{ github.event.inputs.min_mcap || '2.0' }},
+            "run_id": "${{ github.run_id }}",
+            "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }
+          EOF
+
+      - name: Archive historical results
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          mkdir -p data/history
+          if [ -f data/screener_results.json ]; then
+            cp data/screener_results.json "data/history/results_${DATE}.json"
+          fi
+
+      - name: Commit results to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add data/
+          git add ticker_cache/*.json 2>/dev/null || true
+          
+          DATE=$(date +%Y-%m-%d)
+          STOCK_COUNT=$(python -c "import json; d=json.load(open('data/screener_results.json')); print(d['total_screened'])" 2>/dev/null || echo "?")
+          
+          git diff --cached --quiet || \
+            git commit -m "🔍 Screener run: ${DATE} — ${STOCK_COUNT} stocks scored" \
+              -m "Exchange: ${{ github.event.inputs.exchange || 'ALL' }}" \
+              -m "Min MCap: \$${{ github.event.inputs.min_mcap || '2.0' }}B"
+          
+          git push
+
+  deploy:
+    needs: screen
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main  # Get the latest commit (including screener results)
+
+      - name: Pull latest (including screener commit)
+        run: git pull origin main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build React frontend
+        run: |
+          cd frontend
+          npm ci
+          npm run build
+
+      - name: Copy data into build
+        run: |
+          cp data/screener_results.json frontend/dist/screener_results.json
+          cp data/entry_signals.json frontend/dist/entry_signals.json
+          cp data/meta.json frontend/dist/meta.json
+          cp -r data/history frontend/dist/history 2>/dev/null || true
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/dist
