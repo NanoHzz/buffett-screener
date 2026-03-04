@@ -507,8 +507,18 @@ def fetch_stock_data(ticker: str) -> dict | None:
             data["fcf_yield"] = None
         
         # ── Dividend Info ──
-        data["dividend_yield"] = _pct(info.get("dividendYield"))
-        data["payout_ratio"] = _pct(info.get("payoutRatio"))
+        # dividendYield can be unreliable in yfinance — use trailingAnnualDividendYield
+        # as primary source, fall back to dividendYield, and cap at 25% as sanity check
+        div_yield = info.get("trailingAnnualDividendYield") or info.get("dividendYield")
+        div_yield_pct = _pct(div_yield)
+        if div_yield_pct is not None and (div_yield_pct > 25 or div_yield_pct < 0):
+            div_yield_pct = None  # Almost certainly bad data
+        data["dividend_yield"] = div_yield_pct
+        
+        payout = _pct(info.get("payoutRatio"))
+        if payout is not None and (payout > 200 or payout < 0):
+            payout = None  # Bad data
+        data["payout_ratio"] = payout
         
         # ── Share Count Trend (buybacks proxy) ──
         data["shares_outstanding"] = info.get("sharesOutstanding")
