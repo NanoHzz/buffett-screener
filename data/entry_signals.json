@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-11T07:03:05.371333",
+  "generated": "2026-04-12T07:16:27.630584",
   "total_scanned": 74,
   "ma_periods": {
     "ma_200w": 200,
@@ -3182,7 +3182,7 @@
       "ma_regime": "above_all",
       "momentum_13w": -9.88,
       "momentum_26w": 32.33,
-      "volatility_annual": 42.2,
+      "volatility_annual": 42.21,
       "max_drawdown_52w": -26.68,
       "entry_signals": [
         "\u26a0\ufe0f Extended: 112.9% above 200-week MA \u2014 elevated risk",
