@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-25T07:19:52.650237",
+  "generated": "2026-04-26T07:42:11.276548",
   "total_scanned": 74,
   "ma_periods": {
     "ma_200w": 200,
@@ -1014,7 +1014,7 @@
       "ma_100w_value": 615.84,
       "ma_100w_distance_pct": 13.16,
       "ma_100w_below": false,
-      "ma_52w_value": 700.95,
+      "ma_52w_value": 700.96,
       "ma_52w_distance_pct": -0.58,
       "ma_52w_below": true,
       "ma_50w_value": 704.16,
