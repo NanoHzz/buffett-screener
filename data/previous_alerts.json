@@ -1,22 +1,24 @@
 {
-  "date": "2026-04-29T08:21:53.106251",
+  "date": "2026-04-30T08:24:00.258985",
   "tickers": [
+    "CALM",
     "RMD.AX",
     "BRBR",
     "QLYS",
     "QFIN",
     "NICE",
-    "CALM",
     "HRB",
     "PDD",
-    "DBX",
     "RPL.AX",
-    "NTES",
-    "GQG.AX",
-    "DGT.AX",
+    "DBX",
+    "DECK",
     "ASR",
-    "CMSA",
+    "DGT.AX",
+    "GQG.AX",
+    "NTES",
     "SLM",
-    "DECK"
+    "HTGC",
+    "CMSA",
+    "DTW"
   ]
 }
