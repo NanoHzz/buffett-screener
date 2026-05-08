@@ -1,5 +1,5 @@
 {
-  "date": "2026-05-07T08:35:30.277546",
+  "date": "2026-05-08T07:44:19.547356",
   "tickers": [
     "CALM",
     "RMD.AX",
@@ -14,8 +14,9 @@
     "DECK",
     "GQG.AX",
     "NTES",
-    "CMSA",
     "RPL.AX",
+    "CMSA",
+    "MTCH",
     "ASR"
   ]
 }
