@@ -1,8 +1,8 @@
 {
-  "date": "2026-06-02T10:25:55.691142",
+  "date": "2026-06-03T11:01:34.082914",
   "tickers": [
-    "GQG.AX",
     "CALM",
+    "GQG.AX",
     "RMD.AX",
     "PDD",
     "BRBR",
@@ -10,20 +10,19 @@
     "NICE",
     "QFIN",
     "HRB",
+    "CARG",
+    "RPL.AX",
     "SLM",
-    "DGT.AX",
-    "UNMA",
-    "ASR",
     "CMSA",
     "DTW",
-    "CARG",
+    "UNMA",
     "ATAT",
     "MTG",
     "MFG.AX",
     "AMP",
-    "HLI.AX",
-    "NTES",
-    "RPL.AX",
+    "MTCH",
+    "ASR",
+    "DGT.AX",
     "HIG"
   ]
 }
