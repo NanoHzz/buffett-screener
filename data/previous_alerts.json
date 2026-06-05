@@ -1,8 +1,8 @@
 {
-  "date": "2026-06-04T09:57:25.747172",
+  "date": "2026-06-05T09:53:06.942424",
   "tickers": [
-    "GQG.AX",
     "CALM",
+    "GQG.AX",
     "RMD.AX",
     "PDD",
     "BRBR",
@@ -13,19 +13,17 @@
     "CARG",
     "RPL.AX",
     "SLM",
-    "MTG",
+    "ATAT",
+    "DGT.AX",
     "CMSA",
     "DTW",
     "UNMA",
     "ASR",
-    "AMP",
-    "DGT.AX",
-    "HTGC",
+    "MTG",
     "MFG.AX",
     "MTCH",
     "NTES",
-    "ATAT",
-    "DECK",
-    "HIG"
+    "HIG",
+    "DBX"
   ]
 }
