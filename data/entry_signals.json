@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-07T08:57:37.663333",
+  "generated": "2026-06-08T10:58:39.130447",
   "total_scanned": 74,
   "ma_periods": {
     "ma_200w": 200,
@@ -2688,7 +2688,7 @@
       "low_52w": 33.17,
       "pct_from_52w_high": -1.96,
       "pct_from_52w_low": 33.09,
-      "range_52w_position": 92.5,
+      "range_52w_position": 92.6,
       "rsi_weekly": 59.1,
       "percentile_5yr": 96.5,
       "percentile_3yr": 94.2,
@@ -2700,7 +2700,7 @@
       "max_drawdown_52w": -8.53,
       "entry_signals": [
         "\u26a0\ufe0f Stretched: 42.3% above 200-week MA",
-        "Near 52-week high (top 8% of range)"
+        "Near 52-week high (top 7% of range)"
       ],
       "entry_score": 24.0,
       "buffett_score": 75.0,
