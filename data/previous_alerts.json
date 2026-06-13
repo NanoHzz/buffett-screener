@@ -1,5 +1,5 @@
 {
-  "date": "2026-06-12T10:15:22.167053",
+  "date": "2026-06-13T09:18:04.935311",
   "tickers": [
     "RMD.AX",
     "PDD",
@@ -7,21 +7,20 @@
     "QLYS",
     "QFIN",
     "NICE",
-    "HRB",
     "GQG.AX",
     "CALM",
+    "HRB",
     "CARG",
-    "ASR",
     "SLDE",
     "RPL.AX",
     "SLM",
     "DGT.AX",
-    "ATAT",
     "CMSA",
     "DTW",
     "UNMA",
+    "ASR",
+    "ATAT",
     "MTCH",
-    "MTG",
     "HIG",
     "DBX"
   ]
