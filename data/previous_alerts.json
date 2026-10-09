@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-08T12:57:22.901825",
+  "date": "2026-10-09T12:43:15.709462",
   "tickers": [
     "CALM",
     "CMSA",
@@ -12,16 +12,16 @@
     "QFIN",
     "RPL.AX",
     "DECK",
-    "CARG",
     "NICE",
     "BYD",
+    "CARG",
+    "ATAT",
     "RMD.AX",
+    "GRBK",
     "HIG",
     "OZK",
-    "ATAT",
-    "MFG.AX",
     "SLM",
     "DGT.AX",
-    "GRBK"
+    "MFG.AX"
   ]
 }
