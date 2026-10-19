@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-18T10:31:29.985990",
+  "date": "2026-10-19T12:22:37.149659",
   "tickers": [
     "CALM",
     "DTW",
@@ -18,9 +18,10 @@
     "GRBK",
     "SLM",
     "CARG",
-    "MFG.AX",
     "CBT",
+    "MFG.AX",
     "ATAT",
-    "IBOC"
+    "IBOC",
+    "RMD.AX"
   ]
 }
