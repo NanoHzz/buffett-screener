@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-01T04:05:33.552472",
+  "generated": "2026-11-01T12:47:55.517674",
   "total_scanned": 73,
   "ma_periods": {
     "ma_200w": 200,
@@ -1309,7 +1309,7 @@
       "ma_regime": "short_term_weak",
       "momentum_13w": -1.69,
       "momentum_26w": -7.97,
-      "volatility_annual": 14.46,
+      "volatility_annual": 14.47,
       "max_drawdown_52w": -9.73,
       "entry_signals": [
         "\u26a0\ufe0f Stretched: 26.9% above 200-week MA",
