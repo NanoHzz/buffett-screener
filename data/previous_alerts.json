@@ -1,23 +1,22 @@
 {
-  "date": "2026-11-09T15:26:25.994702",
+  "date": "2026-11-10T14:28:07.652039",
   "tickers": [
     "DTW",
-    "CALM",
     "GQG.AX",
-    "CMSA",
-    "UNMA",
     "PDD",
+    "CALM",
     "BRBR",
     "QFIN",
-    "RPL.AX",
     "NICE",
     "SLM",
     "DECK",
-    "ASR",
+    "RPL.AX",
+    "CMSA",
+    "UNMA",
     "CBT",
+    "ASR",
     "MCY",
     "NEU",
-    "DGT.AX",
     "RMD.AX"
   ]
 }
