@@ -1,11 +1,11 @@
 {
-  "date": "2026-11-16T15:01:36.056468",
+  "date": "2026-11-17T15:37:28.996035",
   "tickers": [
+    "CALM",
     "CMSA",
     "DTW",
-    "CALM",
-    "GQG.AX",
     "UNMA",
+    "GQG.AX",
     "PDD",
     "BRBR",
     "QFIN",
@@ -16,10 +16,11 @@
     "CBT",
     "ASR",
     "GRBK",
-    "NEU",
+    "IBOC",
     "MCY",
+    "NEU",
+    "CSQ",
     "DGT.AX",
-    "RMD.AX",
     "ITUB"
   ]
 }
